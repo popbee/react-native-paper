@@ -19,10 +19,12 @@ type Props = {|
    * Label and press callback for the action button. It should contain the following properties:
    * - `label` - Label of the action button
    * - `onPress` - Callback that is called when action button is pressed.
+   * Optional accessibilityLabel and testID for accessibility and testing purpose
    */
   action?: {
     label: string,
     accessibilityLabel?: string,
+    testID?: string,
     onPress: () => mixed,
   },
   /**
@@ -42,6 +44,10 @@ type Props = {|
    * @optional
    */
   theme: Theme,
+  /**
+   * testID for testing purposes applied to the main Snackbar box
+   */
+  testID?: string,
 |};
 
 type State = {
@@ -194,7 +200,15 @@ class Snackbar extends React.Component<Props, State> {
   _hideTimeout: TimeoutID;
 
   render() {
-    const { children, visible, action, onDismiss, theme, style } = this.props;
+    const {
+      children,
+      visible,
+      action,
+      onDismiss,
+      theme,
+      style,
+      testID,
+    } = this.props;
     const { colors, roundness } = theme;
 
     if (this.state.hidden) {
@@ -204,6 +218,7 @@ class Snackbar extends React.Component<Props, State> {
     return (
       <SafeAreaView pointerEvents="box-none" style={styles.wrapper}>
         <Surface
+          testID={testID}
           pointerEvents="box-none"
           accessibilityLiveRegion="polite"
           style={[
@@ -230,6 +245,7 @@ class Snackbar extends React.Component<Props, State> {
           </Text>
           {action ? (
             <Button
+              testID={action.testID}
               accessibilityLabel={action.accessibilityLabel}
               onPress={() => {
                 action.onPress();

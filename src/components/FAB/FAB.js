@@ -143,6 +143,7 @@ class FAB extends React.Component<Props, State> {
       style,
       visible,
       loading,
+      testID,
       ...rest
     } = this.props;
     const { visibility } = this.state;
@@ -199,6 +200,7 @@ class FAB extends React.Component<Props, State> {
           onPress={onPress}
           rippleColor={rippleColor}
           disabled={disabled}
+          testID={testID}
           accessibilityLabel={accessibilityLabel}
           accessibilityTraits={disabled ? ['button', 'disabled'] : 'button'}
           accessibilityComponentType="button"

@@ -70,6 +70,10 @@ type Props = React.ElementConfig<typeof Surface> & {|
    * @optional
    */
   theme: Theme,
+  /**
+   * Pass down testID to touchable for tests.
+   */
+  testID?: string,
 |};
 
 type State = {
@@ -151,6 +155,7 @@ class Button extends React.Component<Props, State> {
       onPress,
       style,
       theme,
+      testID,
       contentStyle,
       ...rest
     } = this.props;
@@ -249,6 +254,7 @@ class Button extends React.Component<Props, State> {
           disabled={disabled}
           rippleColor={rippleColor}
           style={touchableStyle}
+          testID={testID}
         >
           <View style={[styles.content, contentStyle]}>
             {icon && loading !== true ? (
