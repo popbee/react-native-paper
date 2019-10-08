@@ -150,8 +150,8 @@ class TextInputFlat extends React.Component<ChildTextInputProps, {}> {
               backgroundColor: error
                 ? colors.error
                 : parentState.focused
-                  ? activeColor
-                  : underlineColorCustom,
+                ? activeColor
+                : underlineColorCustom,
               // Underlines is thinner when input is not focused
               transform: [{ scaleY: parentState.focused ? 1 : 0.5 }],
             },
@@ -236,7 +236,7 @@ class TextInputFlat extends React.Component<ChildTextInputProps, {}> {
                 : styles.inputFlatWithoutLabel,
               {
                 color: inputTextColor,
-                fontFamily,
+                // fontFamily,   // Avoid crashes. See https://github.com/facebook/react-native/issues/26464
                 textAlignVertical: multiline ? 'top' : 'center',
               },
             ],
